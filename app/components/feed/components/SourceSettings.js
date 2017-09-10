@@ -76,11 +76,11 @@ let SourceSettings = ({classes, onChange, onSubmit}) => {
 						/>
 					))
 				}
-				<Dropdown
+			</div>
+			<Dropdown
 					defaultValue='bash.org'
 					options={options}
 				/>
-		</div>
 			<Button
 				text='Submit'
 				className={classes.btn}
