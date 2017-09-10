@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
+// import ReactRouter from 'react-router-dom'
 import {Provider, connect} from 'react-redux'
 import store from './store'
 import injectSheet from 'react-jss'
@@ -8,6 +9,9 @@ import List from './components/List'
 import SourceSettings from './components/SourceSettings'
 import Header from './../common/Header'
 import Spinner from './../common/Spinner'
+
+// const Router = ReactRouter.BrowserRouter
+// const Route = ReactRouter.Route
 
 const styles = {
 	feed: {
@@ -59,6 +63,7 @@ let Feed = class extends React.PureComponent {
 		const {dataLoaded, classes, onLoad} = this.props
 		return (
 			<div className={classes.feed}>
+				<a href='/admin'>Admin</a>
 				<div className={classes.feedHeader}>
 					<h1>Nullam elementum justo egestas interdum gravida!</h1>
 					<p>
