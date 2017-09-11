@@ -12,6 +12,7 @@ const styles = {
 	label: {
 		display: 'block',
 		fontSize: 12,
+		color: '#9D9D9D',
 	},
 	input: {
 		display: 'block',
@@ -29,6 +30,7 @@ const InputField = ({
 	id,
 	label,
 	type,
+  value,
 	placeholder,
 	onChange,
 }) => {
@@ -45,6 +47,7 @@ const InputField = ({
 				type={type}
 				id={id}
 				placeholder={placeholder}
+				value={value}
 				onChange={onChange}
 			/>
 		</div>
@@ -58,6 +61,7 @@ InputField.PropTypes = {
 	label: PropTypes.string,
 	type: PropTypes.string,
 	placeholder: PropTypes.string,
+	value: PropTypes.any,
 	onChange: PropTypes.func,
 }
 

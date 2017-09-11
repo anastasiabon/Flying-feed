@@ -8,6 +8,7 @@ const styles = {
 		position: 'relative',
 		height: 27,
 		borderBottom: '1px solid #ccc',
+		cursor: 'pointer',
 	},
 	list: {
 		position: 'absolute',
@@ -28,18 +29,21 @@ const styles = {
 	optionNew: {
 		fontStyle: 'italic',
 	},
+  selectedOption: {
+		outline: '1px solid red',
+	},
 	btn: {
 		position: 'absolute',
 		right: 0,
-		cursor: 'pointer',
 	},
 }
 
 class Dropdown extends React.PureComponent {
 	static PropTypes = {
 		classes: PropTypes.any,
-		defaultValue: PropTypes.string,
 		options: PropTypes.array,
+		selected: PropTypes.string,
+    onSelect: PropTypes.func,
 	}
 	constructor(props) {
     super(props)
@@ -61,13 +65,14 @@ class Dropdown extends React.PureComponent {
   }
 
 	render() {
-		const {classes, defaultValue, options} = this.props
-		const {selected, listIsOpened} = this.state
+		const {classes, options, selected, onSelect} = this.props
+		const {listIsOpened} = this.state
+
 		return (
 			<div className={classes.root}>
-				<div>
-					<span>{selected || this.props.defaultValue}</span>
-					<button onClick={this.toggleList} className={classes.btn}>+</button>
+				<div onClick={this.toggleList} >
+					<span>{this.props.selected}</span>
+					<button className={classes.btn}>+</button>
 				</div>
 				{
 					listIsOpened && (
@@ -76,11 +81,14 @@ class Dropdown extends React.PureComponent {
 									this.props.options.map((item, i) => {
 										return (
 												<div
-													className={classes.option}
-													onClick={() => this.onSelect(item)}
+													className={classJoiner(
+														classes.option,
+														this.props.selected === item.parsedSite && classes.selectedOption
+													)}
+													onClick={() => this.props.onSelect(item)}
 													key={i}
 												>
-													{item}
+													{item.parsedSite}
 												</div>
 											)
 									})

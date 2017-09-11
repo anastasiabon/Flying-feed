@@ -27,11 +27,6 @@ const appReducer = (state = appInitial, action) => {
 				dataLoaded: true,
 				noEntries: value,
 			}
-		case 'CHANGE_VALUE':
-			return {
-				...state,
-				[value.id]: value.value
-			}
 		default:
 			return state
 	}
