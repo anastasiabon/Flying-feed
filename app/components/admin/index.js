@@ -17,6 +17,9 @@ const styles = {
     flexWrap: 'wrap',
     marginTop: 20,
   },
+  headline: {
+    marginBottom: 40,
+  },
   input: {
     width: '50%',
     '&:last-child': {
@@ -28,31 +31,35 @@ const styles = {
 const change = (value, id) => ({type: 'CHANGE_VALUE', value: {value, id}, reducer: 'appReducer'})
 const submit = () => ({type: 'SUBMIT', reducer: 'appReducer'})
 const select = value => ({type: 'SELECT', value})
+const addSite = () => ({type: 'ADD_SITE'})
+
 const mapStateToProps = state => ({state});
 const mapDispatchToProps = dispatch => ({
   onChange: (value, id) => dispatch(change(value, id)),
   onSubmit: () => dispatch(submit()),
   onSelect: value => dispatch(select(value)),
+  onAddSite: value => dispatch(addSite()),
 })
 
-let Admin = ({state, classes, onChange, onSubmit, onSelect}) => {
-  const { data, selected } = state
+let Admin = ({state, classes, onChange, onSubmit, onSelect, onAddSite}) => {
+  const { data, selected, value, siteIsAdding } = state
   const currentSite = selected || data[0]
 
   return (
     <div className='layout'>
-      <h1>Choose feed source to edit or create a new one</h1>
+      <h1 className={classes.headline}>Choose feed source to edit or create a new one</h1>
       <Dropdown
         options={data}
-        selected={currentSite.parsedSite}
+        selected={siteIsAdding ? value.parsedSite : currentSite.parsedSite}
         onSelect={onSelect}
+        addSite={onAddSite}
       />
       <div className={classes.fields}>
         <Input
           className={classes.input}
           id='parsedSite'
           label='Site for parsing'
-          value={currentSite.parsedSite}
+          value={siteIsAdding ? value.parsedSite : currentSite.parsedSite}
           type='text'
           placeholder='Fill in the field'
           onChange={(e) => {onChange(e.target.value, e.target.id)}}
@@ -61,7 +68,7 @@ let Admin = ({state, classes, onChange, onSubmit, onSelect}) => {
           className={classes.input}
           id='containerSelector'
           label='Container selector'
-          value={currentSite.containerSelector}
+          value={siteIsAdding ? value.containerSelector : currentSite.containerSelector}
           type='text'
           placeholder='Fill in the field'
           onChange={(e) => {onChange(e.target.value, e.target.id)}}
@@ -70,7 +77,7 @@ let Admin = ({state, classes, onChange, onSubmit, onSelect}) => {
           className={classes.input}
           id='bodySelector'
           label='Meta selector'
-          value={currentSite.bodySelector}
+          value={siteIsAdding ? value.bodySelector : currentSite.bodySelector}
           type='text'
           placeholder='Fill in the field'
           onChange={(e) => {onChange(e.target.value, e.target.id)}}
@@ -79,7 +86,7 @@ let Admin = ({state, classes, onChange, onSubmit, onSelect}) => {
           className={classes.input}
           id='metaSelector'
           label='Site for parsing'
-          value={currentSite.metaSelector}
+          value={siteIsAdding ? value.metaSelector : currentSite.metaSelector}
           type='text'
           placeholder='Fill in the field'
           onChange={(e) => {onChange(e.target.value, e.target.id)}}
@@ -88,7 +95,7 @@ let Admin = ({state, classes, onChange, onSubmit, onSelect}) => {
           className={classes.input}
           id='baseEncoding'
           label='Base encoding'
-          value={currentSite.baseEncoding}
+          value={siteIsAdding ? value.baseEncoding : currentSite.baseEncoding}
           type='text'
           placeholder='Fill in the field'
           onChange={(e) => {onChange(e.target.value, e.target.id)}}

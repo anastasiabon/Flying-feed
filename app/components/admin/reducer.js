@@ -31,7 +31,15 @@ const fakeData = [
 
 const appInitial = {
   data: fakeData,
+  value: {
+    parsedSite: '',
+    containerSelector: '',
+    bodySelector: '',
+    metaSelector: '',
+    baseEncoding: '',
+  },
   selected: '',
+  siteIsAdding: false,
 }
 
 const reducer = (state = appInitial, action) => {
@@ -42,11 +50,20 @@ const reducer = (state = appInitial, action) => {
       return {
         ...state,
         selected: value,
+        siteIsAdding: false,
       }
     case 'CHANGE_VALUE':
       return {
         ...state,
-        [value.id]: value.value
+        value: {
+          ...state.value,
+          [value.id]: value.value
+        }
+      }
+    case 'ADD_SITE':
+      return {
+        ...state,
+        siteIsAdding: true,
       }
     default:
       return state;

@@ -30,11 +30,12 @@ const styles = {
 		fontStyle: 'italic',
 	},
   selectedOption: {
-		outline: '1px solid red',
+		outline: '1px solid #1c95a9',
 	},
 	btn: {
 		position: 'absolute',
 		right: 0,
+		cursor: 'pointer',
 	},
 }
 
@@ -44,20 +45,15 @@ class Dropdown extends React.PureComponent {
 		options: PropTypes.array,
 		selected: PropTypes.string,
     onSelect: PropTypes.func,
+    addSite: PropTypes.func,
 	}
 	constructor(props) {
     super(props)
     this.state = {
-    	selected: '',
     	listIsOpened: false,
     }
 
-    this.onSelect = this.onSelect.bind(this)
     this.toggleList = this.toggleList.bind(this)
-  }
-
-  onSelect(source) {
-  	this.setState({selected: source})
   }
 
   toggleList() {
@@ -98,7 +94,7 @@ class Dropdown extends React.PureComponent {
 										classes.option,
 										classes.optionNew,
 										)}
-									onClick={() => this.onSelect(item)}
+									onClick={this.props.addSite}
 								>
 									Add a new one
 								</div>
