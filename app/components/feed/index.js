@@ -1,26 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactDOM from 'react-dom'
-// import ReactRouter from 'react-router-dom'
 import {Provider, connect} from 'react-redux'
 import store from './store'
 import injectSheet from 'react-jss'
 import List from './components/List'
-import SourceSettings from './components/SourceSettings'
-import Header from './../common/Header'
 import Spinner from './../common/Spinner'
 
-// const Router = ReactRouter.BrowserRouter
-// const Route = ReactRouter.Route
-
 const styles = {
-	feed: {
-		width: '100%',
-		maxWidth: 640,
-		margin: [50, 'auto'],
-		padding: [30, 20],
-		backgroundColor: '#fff',
-	},
 	feedHeader: {
 		textAlign: 'center',
 	},
@@ -62,8 +48,7 @@ let Feed = class extends React.PureComponent {
 	render() {
 		const {dataLoaded, classes, onLoad} = this.props
 		return (
-			<div className={classes.feed}>
-				<a href='/admin'>Admin</a>
+			<div className='layout'>
 				<div className={classes.feedHeader}>
 					<h1>Nullam elementum justo egestas interdum gravida!</h1>
 					<p>
@@ -73,7 +58,6 @@ let Feed = class extends React.PureComponent {
 						In sagittis turpis nisi, id molestie augue imperdiet sit amet.
 					</p>
 				</div>
-				<SourceSettings />
 				<div>
 					<List />
 					<div className={classes.initLoad} ref={node => {this.node = node}} />
@@ -86,6 +70,6 @@ let Feed = class extends React.PureComponent {
 
 Feed = connect(mapStateToProps, mapDispatchToProps)(Feed)
 Feed = injectSheet(styles)(Feed)
-const App = () => <Provider store={store}><Feed/></Provider>
+const Page = () => <Provider store={store}><Feed/></Provider>
 
-export default App
+export default Page
