@@ -20,18 +20,28 @@ const styles = {
 
 		'&:hover': {
 			backgroundColor: '#167f90',
-		}
+		},
+	},
+	disabled: {
+		backgroundColor: '#dcdcdc',
+		cursor: 'not-allowed',
+
+		'&:hover': {
+			backgroundColor: '#dcdcdc',
+		},
 	},
 }
 
-const Button = ({classes, className, text, onClick}) => {
+const Button = ({classes, className, text, onClick, disabled}) => {
 	return (
 			<button
 				className={classJoiner(
 					className,
 					classes.button,
+          disabled && classes.disabled
 				)}
 				onClick={onClick}
+				disabled={disabled}
 			>
 				{text}
 			</button>
@@ -43,6 +53,7 @@ Button.PropTypes = {
 	text: PropTypes.string,
 	className: PropTypes.string,
 	onClick: PropTypes.func,
+	disabled: PropTypes.bool,
 }
 
 export default injectSheet(styles)(Button)

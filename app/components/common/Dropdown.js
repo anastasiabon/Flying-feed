@@ -17,6 +17,7 @@ const styles = {
 		width: '100%',
 		border: '1px solid #ccc',
 		backgroundColor: '#fff',
+		boxShadow: '0 5px 18px 0 rgba(0,0,0,.2)',
 	},
 	option: {
 		padding: [5, 10],
@@ -47,6 +48,7 @@ class Dropdown extends React.PureComponent {
     onSelect: PropTypes.func,
     addSite: PropTypes.func,
 	}
+
 	constructor(props) {
     super(props)
     this.state = {
@@ -54,34 +56,49 @@ class Dropdown extends React.PureComponent {
     }
 
     this.toggleList = this.toggleList.bind(this)
+    this.handleDocumentClick = this.handleDocumentClick.bind(this)
+  }
+
+  componentDidMount() {
+    document.addEventListener('click', this.handleDocumentClick, false)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleDocumentClick, false)
   }
 
   toggleList() {
   	this.setState({listIsOpened: !this.state.listIsOpened})
   }
 
+  handleDocumentClick(event) {
+    if (!this.node || !event.target || !this.state.listIsOpened) return
+    if (this.node.contains(event.target)) return
+    this.toggleList()
+	}
+
 	render() {
-		const {classes, options, selected, onSelect} = this.props
+		const {classes, options, selected, onSelect, addSite} = this.props
 		const {listIsOpened} = this.state
 
 		return (
-			<div className={classes.root}>
+			<div className={classes.root} ref={node => {this.node = node}}>
 				<div onClick={this.toggleList} >
-					<span>{this.props.selected}</span>
+					<span>{selected}</span>
 					<button className={classes.btn}>+</button>
 				</div>
 				{
 					listIsOpened && (
 							<div className={classes.list}>
 								{
-									this.props.options.map((item, i) => {
+									options.map((item, i) => {
 										return (
 												<div
 													className={classJoiner(
 														classes.option,
-														this.props.selected === item.parsedSite && classes.selectedOption
+														selected === item.parsedSite && classes.selectedOption
 													)}
-													onClick={() => this.props.onSelect(item)}
+													onClick={() => onSelect(item)}
 													key={i}
 												>
 													{item.parsedSite}
@@ -94,7 +111,7 @@ class Dropdown extends React.PureComponent {
 										classes.option,
 										classes.optionNew,
 										)}
-									onClick={this.props.addSite}
+									onClick={addSite}
 								>
 									Add a new one
 								</div>

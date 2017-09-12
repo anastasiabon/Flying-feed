@@ -40,6 +40,7 @@ const appInitial = {
   },
   selected: '',
   siteIsAdding: false,
+  isChanged: false,
 }
 
 const reducer = (state = appInitial, action) => {
@@ -53,17 +54,33 @@ const reducer = (state = appInitial, action) => {
         siteIsAdding: false,
       }
     case 'CHANGE_VALUE':
+      if (state.siteIsAdding) {
+        return {
+          ...state,
+          value: {
+            ...state.value,
+            [value.id]: value.value,
+          },
+          isChanged: true,
+        }
+      }
       return {
         ...state,
-        value: {
-          ...state.value,
-          [value.id]: value.value
-        }
+        selected: {
+          ...value.site,
+          [value.id]: value.value,
+        },
+        isChanged: true,
       }
     case 'ADD_SITE':
       return {
         ...state,
         siteIsAdding: true,
+      }
+    case 'SUBMIT':
+      return {
+        ...state,
+        isChanged: false,
       }
     default:
       return state;
