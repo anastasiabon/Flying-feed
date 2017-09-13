@@ -3,8 +3,9 @@ import createSagaMiddleware from 'redux-saga'
 import saga from './saga'
 import appReducer from './reducers/appReducer'
 import listReducer from './reducers/listReducer'
+import menuReducer from './reducers/menuReducer'
 
-const rootReducer = combineReducers({appReducer, listReducer})
+const rootReducer = combineReducers({appReducer, listReducer, menuReducer})
 
 const middleware = createSagaMiddleware()
 const store = createStore(rootReducer, applyMiddleware(middleware))

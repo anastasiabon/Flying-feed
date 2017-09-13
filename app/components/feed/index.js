@@ -4,11 +4,12 @@ import {Provider, connect} from 'react-redux'
 import store from './store'
 import injectSheet from 'react-jss'
 import List from './components/List'
+import Menu from './components/Menu'
 import Spinner from './../common/Spinner'
 
 const styles = {
 	feedHeader: {
-		textAlign: 'center',
+		// textAlign: 'center',
 	},
 	initLoad: {
 		width: '100%',
@@ -50,13 +51,7 @@ let Feed = class extends React.PureComponent {
 		return (
 			<div className='layout'>
 				<div className={classes.feedHeader}>
-					<h1>Nullam elementum justo egestas interdum gravida!</h1>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-						Nullam elementum justo egestas interdum gravida. Praesent mattis consectetur justo sit amet viverra. 
-						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-						In sagittis turpis nisi, id molestie augue imperdiet sit amet.
-					</p>
+					<Menu />
 				</div>
 				<div>
 					<List />
