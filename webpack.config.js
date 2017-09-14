@@ -2,11 +2,10 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: "source-map",
   entry: ['babel-polyfill', './app/index.js'],
   output: {
-    devtoolLineToLine: true,
-    sourceMapFilename: "./index_bundle.js.map",
+    // devtoolLineToLine: true,
+    // sourceMapFilename: "./index_bundle.js.map",
     pathinfo: true,
     path: path.resolve(__dirname, 'dist'),
     filename: 'index_bundle.js',
@@ -15,7 +14,8 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
-      { test: /\.css$/, use: [ 'style-loader', 'css-loader' ]}
+      { test: /\.css$/, use: [ 'style-loader', 'css-loader' ]},
+      {test: /\.(png|svg|jpg|gif)$/, use: ['file-loader']},
     ],
     loaders: [
             {
@@ -28,9 +28,18 @@ module.exports = {
             }
         ]
   },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+    modules: [
+      path.resolve('./app'),
+      path.resolve('./app/components'),
+      path.resolve('./node_modules')
+    ]
+  },
   devServer: {
     historyApiFallback: true
   },
+  devtool: 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: 'app/index.html'

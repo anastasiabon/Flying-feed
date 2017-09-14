@@ -24,6 +24,102 @@ const menuInitial = {
       name: 'lepra',
       added: true,
     },
+    {
+      name: 'pikabu2',
+      added: true,
+    },
+    {
+      name: 'bash.org2',
+      added: false,
+    },
+    {
+      name: 'dva42',
+      added: false,
+    },
+    {
+      name: 'lenta.ru2',
+      added: false,
+    },
+    {
+      name: 'rbk2',
+      added: true,
+    },
+    {
+      name: 'lepra2',
+      added: true,
+    },
+    {
+      name: 'pikabu3',
+      added: true,
+    },
+    {
+      name: 'bash.org3',
+      added: false,
+    },
+    {
+      name: 'dva43',
+      added: false,
+    },
+    {
+      name: 'lenta.ru3',
+      added: false,
+    },
+    {
+      name: 'rbk3',
+      added: true,
+    },
+    {
+      name: 'lepra3',
+      added: true,
+    },
+    {
+      name: 'pikabu4',
+      added: true,
+    },
+    {
+      name: 'bash.org4',
+      added: false,
+    },
+    {
+      name: 'dva44',
+      added: false,
+    },
+    {
+      name: 'lenta.ru4',
+      added: false,
+    },
+    {
+      name: 'rbk4',
+      added: true,
+    },
+    {
+      name: 'lepra4',
+      added: true,
+    },
+    {
+      name: 'pikabu5',
+      added: true,
+    },
+    {
+      name: 'bash.org5',
+      added: false,
+    },
+    {
+      name: 'dva45',
+      added: false,
+    },
+    {
+      name: 'lenta.ru5',
+      added: false,
+    },
+    {
+      name: 'rbk5',
+      added: true,
+    },
+    {
+      name: 'lepra5',
+      added: true,
+    },
   ],
 }
 

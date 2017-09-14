@@ -2,10 +2,35 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
-import Button from '../../common/Button'
-import Checkbox from '../../common/Checkbox'
+import Button from 'components/common/Button'
+import Checkbox from 'components/common/Checkbox'
+import classJoiner from 'utils/classJoiner'
 
-const styles = {}
+const styles = {
+  checkbox: {
+    marginBottom: 15,
+  },
+  listWrapper: {
+    maxHeight: 235,
+    marginBottom: 20,
+    overflowY: 'scroll',
+  },
+  list: {
+    listStyle: 'none',
+    paddingLeft: 0,
+    '-webkit-column-count': 4,
+    '-moz-column-count': 4,
+    columnCount: 4,
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'center',
+
+    '& button:first-child': {
+      marginRight: 20,
+    },
+  },
+}
 
 const change = value => ({type: 'TOGGLE_CHECKBOX', value, reducer: 'menuReducer'})
 
@@ -14,32 +39,45 @@ const mapDispatchToProps = dispatch => ({
   onChange: value => dispatch(change(value))
 })
 
-let FeedSettings = ({classes, sources, onChange}) => {
+let FeedSettings = ({classes, className, sources, onChange, onCancel}) => {
   return (
-    <div className={classes.root}>
+    <div
+      className={classJoiner(
+        className,
+        classes.root,
+      )}>
       <h3>Choose what you want to see in your feed:</h3>
-      <div className={classes.form}>
-        {
-          sources.map((item, i) => (
-            <Checkbox
-              key={i}
-              label={item.name}
-              id={item.name}
-              checked={item.added}
-              onChange={() => onChange(item.name)}
-            />
-          ))
-        }
+      <div className={classes.listWrapper}>
+        <ul className={classes.list}>
+          {
+            sources.map((item, i) => (
+              <li key={i}>
+                <Checkbox
+                  label={item.name}
+                  id={item.name}
+                  checked={item.added}
+                  className={classes.checkbox}
+                  onChange={() => onChange(item.name)}
+                />
+              </li>
+            ))
+          }
+        </ul>
       </div>
-      <Button text='Apply' />
+      <div className={classes.buttons}>
+        <Button text='Apply' />
+        <Button text='Cancel' onClick={onCancel} />
+      </div>
     </div>
   )
 }
 
 FeedSettings.PropTypes = {
   classes: PropTypes.any,
+  className: PropTypes.string,
   sources: PropTypes.array,
   onChange: PropTypes.func,
+  onCancel: PropTypes.func,
 }
 
 FeedSettings = connect(mapStateToProps, mapDispatchToProps)(FeedSettings)

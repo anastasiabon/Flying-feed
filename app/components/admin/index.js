@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import {connect, Provider} from 'react-redux'
 import store from './store'
 import injectSheet from 'react-jss'
-import Button from '../common/Button'
-import Input from '../common/InputField'
-import Dropdown from '../common/Dropdown'
+import Button from 'components/common/Button'
+import Input from 'components/common/InputField'
+import Dropdown from 'components/common/Dropdown'
 
 const styles = {
   btn: {

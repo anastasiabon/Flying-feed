@@ -1,5 +1,6 @@
 body {
 	font: normal 14px/22px 'Roboto', sans-serif;
+	-webkit-font-smoothing: antialiased;
 	background-color: #80deea;
 }
 
