@@ -71,9 +71,9 @@ function* submitAdmin() {
 }
 
 function* saga() {
-  document.title = 'Feed page';
+  // document.title = 'Feed page';
   yield [
-		fork(fetchData),
+		// fork(fetchData),
 		takeLatest('LOAD_ENTRIES', fetchData),
 		takeLatest('SUBMIT', submitAdmin),
 	]

@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
 import FeedSettings from './FeedSettings'
-import SettingsIcon from 'components/common/icons/settings'
-import ButtonIcon from 'components/common/ButtonIcon'
+import SettingsIcon from './../../common/icons/settings'
+import ButtonIcon from './../../common/ButtonIcon'
 
 const styles = {
   nav: {

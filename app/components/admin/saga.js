@@ -5,7 +5,7 @@ function* fetchUser() {
 }
 
 function* saga() {
-  document.title = 'Admin page';
+  // document.title = 'Admin page';
   yield [
     fork(fetchUser),
   ];

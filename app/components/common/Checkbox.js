@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
-import tick from './svg/tick.svg'
+// import tick from './svg/tick.svg'
 
 const styles = {
   input: {
@@ -18,7 +18,7 @@ const styles = {
       verticalAlign: 'middle',
     },
     '&:checked + $label::before': {
-      background: `url(${tick}) no-repeat`,
+      // background: `url(${tick}) no-repeat`,
     },
   },
   label: {},

@@ -5,7 +5,7 @@ import store from './store'
 import injectSheet from 'react-jss'
 import List from './components/List'
 import Menu from './components/Menu'
-import Spinner from 'components/common/Spinner'
+import Spinner from './../common/Spinner'
 
 const styles = {
 	feedHeader: {

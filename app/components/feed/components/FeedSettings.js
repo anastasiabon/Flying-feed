@@ -2,9 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import injectSheet from 'react-jss'
-import Button from 'components/common/Button'
-import Checkbox from 'components/common/Checkbox'
-import classJoiner from 'utils/classJoiner'
+import Button from './../../common/Button'
+import Checkbox from './../../common/Checkbox'
+import classJoiner from './../../../utils/classJoiner'
 
 const styles = {
   checkbox: {
